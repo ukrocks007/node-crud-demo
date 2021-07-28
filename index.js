@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const port = 3000;
 var bodyParser = require('body-parser')
 
+const User = require('./models/user');
+
 mongoose.connect('mongodb://localhost:27017/node-crud', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -20,16 +22,27 @@ mongoose.connect('mongodb://localhost:27017/node-crud', {
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
-    res.send('Hello World!')
+app.get('/', async (req, res) => {
+    try {
+        let users = await User.find();
+        res.status(200).json({ users: users });
+    } catch (ex) {
+        console.log(ex);
+        res.status(500).json(ex);
+    }
 })
 
-app.post('/', (req, res) => {
+app.post('/', async (req, res) => {
     try {
-        console.log("[Body]=>", req.body);
-        let user = req.body;
-        user["dateVisited"] = new Date();
-        res.status(200).json(user);
+        let newUser = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email
+        });
+
+        newUser = await newUser.save();
+
+        res.status(200).json(newUser);
     } catch (ex) {
         console.log(ex);
         res.status(500).json(ex);
