@@ -14,5 +14,9 @@
         "crud"
     ],
     "author": "utkarsh mehta <utkarsh.mehta2612@gmail.com>",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongoose": "^5.13.3"
+    }
 }
