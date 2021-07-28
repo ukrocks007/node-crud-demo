@@ -1,0 +1,18 @@
+{
+    "name": "crud-demo",
+    "version": "1.0.0",
+    "description": "node express mongoose demo to create a basic crud backend",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "keywords": [
+        "nodejs",
+        "express",
+        "mongoose",
+        "crud"
+    ],
+    "author": "utkarsh mehta <utkarsh.mehta2612@gmail.com>",
+    "license": "ISC"
+}
