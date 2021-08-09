@@ -1,9 +1,12 @@
+//Importing Express
 const express = require('express')
+// Creating an Express App 
 const app = express();
 const mongoose = require('mongoose');
-const port = 3000;
+const port = 3001;
 var bodyParser = require('body-parser')
-
+var morgan = require('morgan')
+var cors = require('cors')
 //Importing all the models
 const User = require('./models/user');
 
@@ -24,6 +27,10 @@ mongoose.connect('mongodb://localhost:27017/node-crud', {
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+app.use(morgan('tiny'))
+
+app.use(cors())
 
 apis(app);
 
